@@ -19,3 +19,7 @@ To use user scripts you need to first install a user script manager. Which user 
 - AdGuard: (no additional software required)
 
 ## install a user script
+https://openuserjs.org/scripts/catcto/Google_Play_Debug
+
+## screenshots
+![screenshots](https://raw.githubusercontent.com/catcto/google-play-debug/master/screenshots.jpg)
