@@ -28,25 +28,100 @@
     const DOWN_S = 'oocvOe';
     const DOWN_A = 'LkLjZd ScJHi HPiPcc IfEcue';
     const MAPPINGS_DETAILS = {
+        // FIXME add appId
+
         title: ['ds:5', 0, 0, 0],
+        description: {
+            path: ['ds:5', 0, 10, 0, 1],
+            fun: descriptionText
+        },
+        descriptionHTML: ['ds:5', 0, 10, 0, 1],
+        summary: ['ds:5', 0, 10, 1, 1],
         installs: ['ds:5', 0, 12, 9, 0],
-        inAppProducts: ['ds:5', 0, 12, 12, 0],
         minInstalls: {
             path: ['ds:5', 0, 12, 9, 0],
             fun: cleanInt
         },
-        score: ['ds:7', 0, 6, 0, 1],
-        scoreText: ['ds:7', 0, 6, 0, 0],
-        ratings: ['ds:7', 0, 6, 2, 1],
-        reviews: ['ds:7', 0, 6, 3, 1],
+        score: ['ds:6', 0, 6, 0, 1],
+        scoreText: ['ds:6', 0, 6, 0, 0],
+        ratings: ['ds:6', 0, 6, 2, 1],
+        reviews: ['ds:6', 0, 6, 3, 1],
         histogram: {
-            path: ['ds:7', 0, 6, 1],
+            path: ['ds:6', 0, 6, 1],
             fun: buildHistogram
         },
+
         price: {
             path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
             fun: (val) => val / 1000000 || 0
         },
+        free: {
+            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
+            // considered free only if price is exactly zero
+            fun: (val) => val === 0
+        },
+        currency: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 1],
+        priceText: {
+            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 2],
+            fun: priceText
+        },
+        offersIAP: {
+            path: ['ds:5', 0, 12, 12, 0],
+            fun: Boolean
+        },
+
+        size: ['ds:8', 0],
+        androidVersion: {
+            path: ['ds:8', 2],
+            fun: normalizeAndroidVersion
+        },
+        androidVersionText: ['ds:8', 2],
+
+        developer: ['ds:5', 0, 12, 5, 1],
+        developerId: {
+            path: ['ds:5', 0, 12, 5, 5, 4, 2],
+            fun: (devUrl) => devUrl.split('id=')[1]
+        },
+        developerEmail: ['ds:5', 0, 12, 5, 2, 0],
+        developerWebsite: ['ds:5', 0, 12, 5, 3, 5, 2],
+        developerAddress: ['ds:5', 0, 12, 5, 4, 0],
+        privacyPolicy: ['ds:5', 0, 12, 7, 2],
+        developerInternalID: ['ds:5', 0, 12, 5, 0, 0],
+        genre: ['ds:5', 0, 12, 13, 0, 0],
+        genreId: ['ds:5', 0, 12, 13, 0, 2],
+        familyGenre: ['ds:5', 0, 12, 13, 1, 0],
+        familyGenreId: ['ds:5', 0, 12, 13, 1, 2],
+
+        icon: ['ds:5', 0, 12, 1, 3, 2],
+        headerImage: ['ds:5', 0, 12, 2, 3, 2],
+        screenshots: {
+            path: ['ds:5', 0, 12, 0],
+            fun: R.map(R.path([3, 2]))
+        },
+        video: ['ds:5', 0, 12, 3, 0, 3, 2],
+        videoImage: ['ds:5', 0, 12, 3, 1, 3, 2],
+
+        contentRating: ['ds:5', 0, 12, 4, 0],
+        contentRatingDescription: ['ds:5', 0, 12, 4, 2, 1],
+        adSupported: {
+            path: ['ds:5', 0, 12, 14, 0],
+            fun: Boolean
+        },
+
+        released: ['ds:5', 0, 12, 36],
+        updated: {
+            path: ['ds:5', 0, 12, 8, 0],
+            fun: (ts) => ts * 1000
+        },
+
+        version: ['ds:8', 1],
+        recentChanges: ['ds:5', 0, 12, 6, 1],
+        comments: {
+            path: ['ds:15', 0],
+            fun: extractComments
+        },
+
+        //Apkpure 新添加的数据
         pre_price: {
             path: ['ds:3', 0, 2, 0, 0, 0, 1, 1],
             fun: (val) => {
@@ -56,74 +131,22 @@
                 return 0;
             }
         },
-        free: {
-            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
-            // considered free only if prize is exactly zero
-            fun: (val) => val === 0
-        },
-        currency: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 1],
-        priceText: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 2],
-        offersIAP: {
-            path: ['ds:5', 0, 12, 12, 0],
-            fun: Boolean
-        },
-        size: ['ds:8', 0],
-        androidVersion: {
-            path: ['ds:8', 2],
-            fun: normalizeAndroidVersion
-        },
-        androidVersionText: ['ds:8', 2],
-        developer: ['ds:5', 0, 12, 5, 1],
-        developerId: ['ds:5', 0, 12, 5, 0, 0],
-        developerPage: {
-            path: ['ds:5', 0, 12, 5, 5, 4, 2],
-            fun: developerPage
-        },
-        developerEmail: ['ds:5', 0, 12, 5, 2, 0],
-        developerWebsite: ['ds:5', 0, 12, 5, 3, 5, 2],
-        developerAddress: ['ds:5', 0, 12, 5, 4, 0],
-        genre: ['ds:5', 0, 12, 13, 0, 0],
-        genreId: ['ds:5', 0, 12, 13, 0, 2],
-        familyGenre: ['ds:5', 0, 12, 13, 1, 0],
-        familyGenreId: ['ds:5', 0, 12, 13, 1, 2],
-        icon: ['ds:5', 0, 12, 1, 3, 2],
-        banner: ['ds:5', 0, 12, 2, 3, 2],
-        screenshots: {
-            path: ['ds:5', 0, 12, 0],
-            fun: R.map(R.path([3, 2]))
-        },
-        video: ['ds:5', 0, 12, 3, 0, 3, 2],
-        videoImage: ['ds:5', 0, 12, 3, 1, 3, 2],
-        contentRating: {
-            path: ['ds:5', 0, 12, 4],
-            fun: getContentRating,
-        },
-        contentRatingDescription: ['ds:5', 0, 12, 4, 2, 1],
-        adSupported: {
-            path: ['ds:5', 0, 12, 14, 0],
-            fun: Boolean
-        },
-        updated: {
-            path: ['ds:5', 0, 12, 8, 0],
-            fun: (ts) => ts * 1000
-        },
-        version: ['ds:8', 1],
-        recentChanges: ['ds:5', 0, 12, 6, 1],
-        comments: {
-            path: ['ds:22', 0],
-            fun: extractComments
-        },
+        inAppProducts: ['ds:5', 0, 12, 12, 0],
         interactiveElements: {
             path: ['ds:5', 0, 12, 4, 3, 1],
             fun: getInteractiveElements,
         },
-        description: {
-            path: ['ds:5', 0, 10, 0, 1],
-            fun: descriptionText
-        },
-        descriptionHTML: ['ds:5', 0, 10, 0, 1],
         descriptionTranslation: ['ds:5', 0, 19, 0, 0, 1],
-        descriptionShort: ['ds:5', 0, 10, 1, 1]
+        descriptionShort: ['ds:5', 0, 10, 1, 1],
+        banner: ['ds:5', 0, 12, 2, 3, 2],
+        contentRatingArr: {
+            path: ['ds:5', 0, 12, 4],
+            fun: getContentRatingArr,
+        },
+        developerPage: {
+            path: ['ds:5', 0, 12, 5, 5, 4, 2],
+            fun: developerPage
+        }
     };
 
     var MAPPINGS_DEVELOPER = {
@@ -164,6 +187,26 @@
             4: container[4][1],
             5: container[5][1]
         };
+    }
+
+    function getContentRatingArr(arrList) {
+        var content2 = R.path([2, 1], arrList);
+        var contentRating = [
+            R.path([0], arrList),
+        ];
+
+        if (content2) {
+            contentRating.push(content2);
+        }
+        return contentRating;
+    }
+
+    function priceText (priceText) {
+        // Return Free if the price text is empty
+        if (!priceText) {
+            return 'Free';
+        }
+        return priceText;
     }
 
     function extractComments(comments) {
