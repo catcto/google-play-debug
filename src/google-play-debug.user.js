@@ -5,7 +5,7 @@
 // @icon https://www.gstatic.com/android/market_images/web/favicon_v2.ico
 // @homepage https://github.com/catcto/google-play-debug
 // @supportURL https://github.com/catcto/google-play-debug/issues
-// @version 0.1
+// @version 0.2
 // @author catcto
 // @match https://play.google.com/store/*
 // @license MIT
