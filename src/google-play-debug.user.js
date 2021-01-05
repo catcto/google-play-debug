@@ -20,6 +20,7 @@
 // @run-at document-end
 // ==/UserScript==
 
+
 (function () {
     const DETAILS_REGEX = /https\:\/\/play\.google\.com\/store\/apps\/details\?id=/i;
     const PACKAGES_REGEX = /\/store\/apps\/details\?id=/i;
