@@ -28,24 +28,19 @@
     const DOWN_S = 'oocvOe';
     const DOWN_A = 'LkLjZd ScJHi HPiPcc IfEcue';
     const MAPPINGS_DETAILS = {
-        // FIXME add appId
-        title: ['ds:6', 0, 0, 0], // app标题
-        // description: {
-        //     path: ['ds:6', 0, 10, 0, 1],
-        //     fun: descriptionText
-        // },
-        description: ['ds:6', 0, 10, 0, 1], // 描述
-        descriptionHTML: ['ds:6', 0, 10, 0, 1], // html格式描述
-        summary: ['ds:6', 0, 10, 1, 1], // 摘要
-        installs: ['ds:6', 0, 12, 9, 0], // 安装次数
-        minInstalls: { // 最小安装次数
+        title: ['ds:6', 0, 0, 0],
+        description: ['ds:6', 0, 10, 0, 1],
+        descriptionHTML: ['ds:6', 0, 10, 0, 1],
+        summary: ['ds:6', 0, 10, 1, 1],
+        installs: ['ds:6', 0, 12, 9, 0],
+        minInstalls: {
             path: ['ds:6', 0, 12, 9, 1],
             fun: cleanInt
         },
-        score: ['ds:7', 0, 6, 0, 1], // app得分
+        score: ['ds:7', 0, 6, 0, 1],
         scoreText: ['ds:7', 0, 6, 0, 0],
-        ratings: ['ds:7', 0, 6, 2, 1], // 评分
-        reviews: ['ds:7', 0, 6, 3, 1], // 评论数
+        ratings: ['ds:7', 0, 6, 2, 1],
+        reviews: ['ds:7', 0, 6, 3, 1],
         histogram: {
             path: ['ds:7', 0, 6, 1],
             fun: buildHistogram
@@ -121,7 +116,6 @@
             fun: extractComments
         },
 
-        //Apkpure 新添加的数据
         pre_price: {
             path: ['ds:4', 0, 2, 0, 0, 0, 1, 1],
             fun: (val) => {
@@ -150,11 +144,11 @@
     };
 
     var MAPPINGS_DEVELOPER = {
-        name: ["ds:6", 0, 0, 0], // app名称
-        banner: ["ds:6", 0, 12, 2, 3, 2], // banner图片url
-        icon: ['ds:6', 0, 12, 1, 3, 2], // icon图片url
-        website_url: ["ds:5", 0, 9, 2, 0, 5, 2], // 网站url
-        description: ['ds:6', 0, 12, 5, 3, 5, 2], // 描述
+        name: ["ds:6", 0, 0, 0],
+        banner: ["ds:6", 0, 12, 2, 3, 2],
+        icon: ['ds:6', 0, 12, 1, 3, 2],
+        website_url: ["ds:5", 0, 9, 2, 0, 5, 2],
+        description: ['ds:6', 0, 12, 5, 3, 5, 2],
     };
 
     function descriptionText(description) {
@@ -163,7 +157,6 @@
 
     function cleanInt(number) {
         number = number || '0';
-        // number = number.replace(/[^\d]/g, ''); // removes thousands separator
         return parseInt(number);
     }
 
@@ -332,7 +325,6 @@
     function appInfo() {
         let packageName = getPackageName();
         if (packageName) {
-            // 获取script nonce中AF_initDataCallback信息
             let parsedData = matchScriptData($('body').html());
             let data = extractFields(parsedData, MAPPINGS_DETAILS);
             msgbox('APP Info', '<pre>' + JSON.stringify(data, null, 4) + '</textarea>');
