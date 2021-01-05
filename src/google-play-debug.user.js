@@ -28,7 +28,6 @@
     const DOWN_S = 'oocvOe';
     const DOWN_A = 'LkLjZd ScJHi HPiPcc IfEcue';
     const MAPPINGS_DETAILS = {
-        // FIXME add appId
 
         title: ['ds:5', 0, 0, 0],
         description: {
@@ -57,7 +56,6 @@
         },
         free: {
             path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
-            // considered free only if price is exactly zero
             fun: (val) => val === 0
         },
         currency: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 1],
@@ -121,7 +119,6 @@
             fun: extractComments
         },
 
-        //Apkpure 新添加的数据
         pre_price: {
             path: ['ds:3', 0, 2, 0, 0, 0, 1, 1],
             fun: (val) => {
@@ -163,7 +160,7 @@
 
     function cleanInt(number) {
         number = number || '0';
-        number = number.replace(/[^\d]/g, ''); // removes thousands separator
+        number = number.replace(/[^\d]/g, '');
         return parseInt(number);
     }
 
@@ -202,7 +199,6 @@
     }
 
     function priceText (priceText) {
-        // Return Free if the price text is empty
         if (!priceText) {
             return 'Free';
         }
@@ -255,7 +251,6 @@
             if (R.is(Array, spec)) {
                 return R.path(spec, parsedData);
             }
-            // assume spec object
             const input = R.path(spec.path, parsedData);
             return spec.fun(input);
         }, MAPPINGS);
