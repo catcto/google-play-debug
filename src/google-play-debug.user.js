@@ -29,101 +29,101 @@
     const DOWN_A = 'LkLjZd ScJHi HPiPcc IfEcue';
     const MAPPINGS_DETAILS = {
         // FIXME add appId
-
-        title: ['ds:5', 0, 0, 0],
-        description: {
-            path: ['ds:5', 0, 10, 0, 1],
-            fun: descriptionText
-        },
-        descriptionHTML: ['ds:5', 0, 10, 0, 1],
-        summary: ['ds:5', 0, 10, 1, 1],
-        installs: ['ds:5', 0, 12, 9, 0],
-        minInstalls: {
-            path: ['ds:5', 0, 12, 9, 0],
+        title: ['ds:6', 0, 0, 0], // app标题
+        // description: {
+        //     path: ['ds:6', 0, 10, 0, 1],
+        //     fun: descriptionText
+        // },
+        description: ['ds:6', 0, 10, 0, 1], // 描述
+        descriptionHTML: ['ds:6', 0, 10, 0, 1], // html格式描述
+        summary: ['ds:6', 0, 10, 1, 1], // 摘要
+        installs: ['ds:6', 0, 12, 9, 0], // 安装次数
+        minInstalls: { // 最小安装次数
+            path: ['ds:6', 0, 12, 9, 1],
             fun: cleanInt
         },
-        score: ['ds:6', 0, 6, 0, 1],
-        scoreText: ['ds:6', 0, 6, 0, 0],
-        ratings: ['ds:6', 0, 6, 2, 1],
-        reviews: ['ds:6', 0, 6, 3, 1],
+        score: ['ds:7', 0, 6, 0, 1], // app得分
+        scoreText: ['ds:7', 0, 6, 0, 0],
+        ratings: ['ds:7', 0, 6, 2, 1], // 评分
+        reviews: ['ds:7', 0, 6, 3, 1], // 评论数
         histogram: {
-            path: ['ds:6', 0, 6, 1],
+            path: ['ds:7', 0, 6, 1],
             fun: buildHistogram
         },
 
         price: {
-            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
+            path: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 0],
             fun: (val) => val / 1000000 || 0
         },
         free: {
-            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 0],
+            path: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 0],
             // considered free only if price is exactly zero
             fun: (val) => val === 0
         },
-        currency: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 1],
+        currency: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 1],
         priceText: {
-            path: ['ds:3', 0, 2, 0, 0, 0, 1, 0, 2],
+            path: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 2],
             fun: priceText
         },
         offersIAP: {
-            path: ['ds:5', 0, 12, 12, 0],
+            path: ['ds:6', 0, 12, 12, 0],
             fun: Boolean
         },
 
-        size: ['ds:8', 0],
+        size: ['ds:9', 0],
         androidVersion: {
-            path: ['ds:8', 2],
+            path: ['ds:9', 2],
             fun: normalizeAndroidVersion
         },
-        androidVersionText: ['ds:8', 2],
+        androidVersionText: ['ds:9', 2],
 
-        developer: ['ds:5', 0, 12, 5, 1],
+        developer: ['ds:6', 0, 12, 5, 1],
         developerId: {
-            path: ['ds:5', 0, 12, 5, 5, 4, 2],
+            path: ['ds:6', 0, 12, 5, 5, 4, 2],
             fun: (devUrl) => devUrl.split('id=')[1]
         },
-        developerEmail: ['ds:5', 0, 12, 5, 2, 0],
-        developerWebsite: ['ds:5', 0, 12, 5, 3, 5, 2],
-        developerAddress: ['ds:5', 0, 12, 5, 4, 0],
-        privacyPolicy: ['ds:5', 0, 12, 7, 2],
-        developerInternalID: ['ds:5', 0, 12, 5, 0, 0],
-        genre: ['ds:5', 0, 12, 13, 0, 0],
-        genreId: ['ds:5', 0, 12, 13, 0, 2],
-        familyGenre: ['ds:5', 0, 12, 13, 1, 0],
-        familyGenreId: ['ds:5', 0, 12, 13, 1, 2],
+        developerEmail: ['ds:6', 0, 12, 5, 2, 0],
+        developerWebsite: ['ds:6', 0, 12, 5, 3, 5, 2],
+        developerAddress: ['ds:6', 0, 12, 5, 4, 0],
+        privacyPolicy: ['ds:6', 0, 12, 7, 2],
+        developerInternalID: ['ds:6', 0, 12, 5, 0, 0],
+        genre: ['ds:6', 0, 12, 13, 0, 0],
+        genreId: ['ds:6', 0, 12, 13, 0, 2],
+        familyGenre: ['ds:6', 0, 12, 13, 1, 0],
+        familyGenreId: ['ds:6', 0, 12, 13, 1, 2],
 
-        icon: ['ds:5', 0, 12, 1, 3, 2],
-        headerImage: ['ds:5', 0, 12, 2, 3, 2],
+        icon: ['ds:6', 0, 12, 1, 3, 2],
+        headerImage: ['ds:6', 0, 12, 2, 3, 2],
         screenshots: {
-            path: ['ds:5', 0, 12, 0],
+            path: ['ds:6', 0, 12, 0],
             fun: R.map(R.path([3, 2]))
         },
-        video: ['ds:5', 0, 12, 3, 0, 3, 2],
-        videoImage: ['ds:5', 0, 12, 3, 1, 3, 2],
+        video: ['ds:6', 0, 12, 3, 0, 3, 2],
+        videoImage: ['ds:6', 0, 12, 3, 1, 3, 2],
 
-        contentRating: ['ds:5', 0, 12, 4, 0],
-        contentRatingDescription: ['ds:5', 0, 12, 4, 2, 1],
+        contentRating: ['ds:6', 0, 12, 4, 0],
+        contentRatingDescription: ['ds:6', 0, 12, 4, 2, 1],
         adSupported: {
-            path: ['ds:5', 0, 12, 14, 0],
+            path: ['ds:6', 0, 12, 14, 0],
             fun: Boolean
         },
 
-        released: ['ds:5', 0, 12, 36],
+        released: ['ds:6', 0, 12, 36],
         updated: {
-            path: ['ds:5', 0, 12, 8, 0],
+            path: ['ds:6', 0, 12, 8, 0],
             fun: (ts) => ts * 1000
         },
 
-        version: ['ds:8', 1],
-        recentChanges: ['ds:5', 0, 12, 6, 1],
+        version: ['ds:9', 1],
+        recentChanges: ['ds:6', 0, 12, 6, 1],
         comments: {
-            path: ['ds:15', 0],
+            path: ['ds:16', 0],
             fun: extractComments
         },
 
         //Apkpure 新添加的数据
         pre_price: {
-            path: ['ds:3', 0, 2, 0, 0, 0, 1, 1],
+            path: ['ds:4', 0, 2, 0, 0, 0, 1, 1],
             fun: (val) => {
                 if (val && Array.isArray(val)) {
                     return val[0] / 1000000 || 0
@@ -131,30 +131,30 @@
                 return 0;
             }
         },
-        inAppProducts: ['ds:5', 0, 12, 12, 0],
+        inAppProducts: ['ds:6', 0, 12, 12, 0],
         interactiveElements: {
-            path: ['ds:5', 0, 12, 4, 3, 1],
+            path: ['ds:6', 0, 12, 4, 3, 1],
             fun: getInteractiveElements,
         },
-        descriptionTranslation: ['ds:5', 0, 19, 0, 0, 1],
-        descriptionShort: ['ds:5', 0, 10, 1, 1],
-        banner: ['ds:5', 0, 12, 2, 3, 2],
+        descriptionTranslation: ['ds:6', 0, 19, 0, 0, 1],
+        descriptionShort: ['ds:6', 0, 10, 1, 1],
+        banner: ['ds:6', 0, 12, 2, 3, 2],
         contentRatingArr: {
-            path: ['ds:5', 0, 12, 4],
+            path: ['ds:6', 0, 12, 4],
             fun: getContentRatingArr,
         },
         developerPage: {
-            path: ['ds:5', 0, 12, 5, 5, 4, 2],
+            path: ['ds:6', 0, 12, 5, 5, 4, 2],
             fun: developerPage
         }
     };
 
     var MAPPINGS_DEVELOPER = {
-        name: ["ds:5", 0, 0, 0],
-        banner: ["ds:5", 0, 9, 0, 3, 2],
-        icon: ["ds:5", 0, 9, 1, 3, 2],
-        website_url: ["ds:5", 0, 9, 2, 0, 5, 2],
-        description: ["ds:5", 0, 10, 1, 1],
+        name: ["ds:6", 0, 0, 0], // app名称
+        banner: ["ds:6", 0, 12, 2, 3, 2], // banner图片url
+        icon: ['ds:6', 0, 12, 1, 3, 2], // icon图片url
+        website_url: ["ds:5", 0, 9, 2, 0, 5, 2], // 网站url
+        description: ['ds:6', 0, 12, 5, 3, 5, 2], // 描述
     };
 
     function descriptionText(description) {
@@ -163,7 +163,7 @@
 
     function cleanInt(number) {
         number = number || '0';
-        number = number.replace(/[^\d]/g, ''); // removes thousands separator
+        // number = number.replace(/[^\d]/g, ''); // removes thousands separator
         return parseInt(number);
     }
 
@@ -264,7 +264,7 @@
     function matchScriptData(response) {
         const scriptRegex = />AF_initDataCallback[\s\S]*?<\/script/g;
         const keyRegex = /(ds:.*?)'/;
-        const valueRegex = /return ([\s\S]*?)}}\);<\//;
+        const valueRegex = /data:([\s\S]*?), sideChannel: {}}\);<\//;
 
         return response.match(scriptRegex).reduce((accum, data) => {
             const keyMatch = data.match(keyRegex);
@@ -332,11 +332,10 @@
     function appInfo() {
         let packageName = getPackageName();
         if (packageName) {
+            // 获取script nonce中AF_initDataCallback信息
             let parsedData = matchScriptData($('body').html());
             let data = extractFields(parsedData, MAPPINGS_DETAILS);
             msgbox('APP Info', '<pre>' + JSON.stringify(data, null, 4) + '</textarea>');
-            console.log(packageName);
-            console.log(parsedData);
         } else {
             msgbox('Error', 'This is not a valid google play details url');
         }
@@ -348,8 +347,6 @@
             let parsedData = matchScriptData($('body').html());
             let data = extractFields(parsedData, MAPPINGS_DEVELOPER);
             msgbox('Developer Info', '<pre>' + JSON.stringify(data, null, 4) + '</textarea>');
-            console.log(developerID);
-            console.log(parsedData);
         } else {
             msgbox('Error', 'This is not a valid google play dev url');
         }
