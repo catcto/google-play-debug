@@ -52,7 +52,6 @@
         },
         free: {
             path: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 0],
-            // considered free only if price is exactly zero
             fun: (val) => val === 0
         },
         currency: ['ds:4', 0, 2, 0, 0, 0, 1, 0, 1],
@@ -195,7 +194,6 @@
     }
 
     function priceText (priceText) {
-        // Return Free if the price text is empty
         if (!priceText) {
             return 'Free';
         }
@@ -248,7 +246,6 @@
             if (R.is(Array, spec)) {
                 return R.path(spec, parsedData);
             }
-            // assume spec object
             const input = R.path(spec.path, parsedData);
             return spec.fun(input);
         }, MAPPINGS);
